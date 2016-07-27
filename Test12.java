@@ -15,8 +15,25 @@ public class Test12 {
 //		so.SO();
 //		Casting ca = new Casting();
 //		ca.Cas();
-		IfElse ie = new IfElse();
-		ie.IE();
+//		IfElse ie = new IfElse();
+//		ie.IE();
+//		WhileTest wt = new WhileTest();
+//		wt.condition();
+//		wt.WT();
+//		ForEachFloat fef = new ForEachFloat();
+//		fef.FEF();
+//		ForEachString fes = new ForEachString();
+//		fes.FES();
+//		LabeledFor lf =  new LabeledFor();
+//		lf.LF();
+//		VowelsAndConsonants vac = new VowelsAndConsonants();
+//		vac.VAC();
+//		Book novel = new Book(true);
+//		novel.CheckIn();
+//		new Book(true);
+//		System.gc();
+		InitialValues iv = new InitialValues();
+		iv.printInitialValues();
 	}
 }
 
@@ -220,5 +237,310 @@ class IfElse{
 }
 
 class WhileTest{
+	static boolean condition(){
+		boolean result = Math.random() < 0.99;
+		System.out.print(result+". ");
+		return result;
+	}
+	public void WT(){
+		while(condition()){
+			System.out.println("Inside 'while'");
+		System.out.println("Exited 'while'");
+		}
+	}
+}
+
+class ListCharacters{
+	public void LC(){
+		for(char c=0;c<128;c++){
+			if(Character.isLowerCase(c))
+				System.out.println("Value: "+ (int)c+" character: " + c);
+		}
+	}
+}
+
+class CommaOperator{
+	public void CO(){
+		for(int i=1,j=i+10;i<5;i++,j=i*2){
+			System.out.println("i = "+i+"j = "+j);
+		}
+	}
+}
+
+class ForEachFloat{
+	public void FEF(){
+		Random rand = new Random(47);
+		float f[] = new float[10];
+		for(int i=0;i<10;i++)
+			f[i] = rand.nextFloat();
+		for(float x:f)
+			System.out.println(x);
+	}
+}
+
+class ForEachString{
+	public void FES(){
+		for(char c : "An African Swallow".toCharArray())
+			System.out.print(c+" ");
+	}
+}
+
+class ForEachInt{
+//	public void FEI(){
+//		for(int i : range(10))
+//			System.out.print(i+" ");
+//	}
+}
+
+class IfElse2{
+	static int test(int testval,int target){
+		if(testval>target){
+			return +1;
+		}
+		else if(testval<target)
+			return -1;
+		else 
+			return 0;
+	}
+}
+
+class BreakAndContinue{
 	
+}
+
+class LabeledFor{
+	public void LF(){
+		int i = 0;
+		outer://Can't have statements here
+		for(;true;){
+			inner:
+			for(;i<10;i++){
+				System.out.println("i = "+i);
+				if(i==2){
+					System.out.println("continue");
+					continue;
+				}
+				if(i==3){
+					System.out.println("break");
+					i++;
+					break;
+				}
+				if(i==7){
+					System.out.println("continue outer");
+					i++;
+					continue outer;
+				}
+				if(i==8){
+					System.out.println("break outer");
+					break outer;
+				}
+				for(int k = 0;k<5;k++){
+					if(k==3){
+						System.out.println("continue inner");
+						continue inner;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+class LabeledWhile{
+	public void LW(){
+		int i = 0;
+		outer:
+			while(true){
+				System.out.println("Outer while loop");
+				while(true){
+					i++;
+					System.out.println("i = "+i);
+					if(i==1){
+						System.out.println("continue");
+						continue;
+					}
+					if(i==3){
+						System.out.println("continue outer");
+						continue outer;
+					}
+					if(i==5){
+						System.out.println("break");
+						break;
+					}
+					if(i==7){
+						System.out.println("break outer");
+						break outer;
+					}
+				}
+			}
+	}
+}
+
+class VowelsAndConsonants{
+	public void VAC(){
+		Random rand = new Random(47);
+		for(int i=0;i<100;i++){
+			int c = rand.nextInt(26)+'a';
+			System.out.print((char)c+". "+c+": ");
+			switch(c){
+			case 'a':
+			case 'e':
+			case 'i':
+			case 'u':System.out.println("vowel");
+			case 'o':
+			case 'y':
+			case 'w':System.out.println("Sometimes a vowel");
+			default: System.out.println("consonant");
+			}
+		}
+	}
+}
+
+class Rock{
+	Rock(){
+		System.out.print("Rock");
+	}
+	void test(){
+		for(int i = 0;i<10;i++)
+			new Rock();
+	}
+}
+
+class Rock2{
+	Rock2(int i){
+		System.out.print("Rock "+i+" ");
+	}
+}
+
+class Tree{
+	int height;
+	Tree(){
+		System.out.println("Planting a seedling");
+		height = 0;
+	}
+	Tree(int initialHeight){
+		height = initialHeight;
+		System.out.println("Creating new Tree that is "+height +" feet tall");
+	}
+	void info(){
+		System.out.println("Tree is "+ height + "feet tall");
+	}
+	void info(String s){
+		System.out.println(s+": Tree is "+height+"feet tall");
+	}
+}
+
+class OverloadingOrder{
+	static void f(String s, int i){
+		System.out.println("String: "+s+". int:"+i);
+	}
+	static void f(int i,String s){
+		System.out.println("int: "+i+".String: "+s);
+	}
+}
+
+class Banana{
+	void peel(int n){
+		
+	}
+}
+//只有需要当指出当前对象的引用时，才需要使用this
+
+class Person{
+	public void eat(Apple apple){
+		Apple peeled = apple.getPeeled();
+		System.out.println("Yummy");
+	}
+}
+
+class Peeler{
+	static Apple peel(Apple apple){
+		//remove peel
+		return apple;
+	}
+}
+
+class Apple{
+	Apple getPeeled(){
+		return Peeler.peel(this);
+	}
+}
+
+
+//在构造器中有时肯呢过想在一个构造器中调用另一个构造器，以避免重复代码，this关键字可以做到这一点。
+//除构造器外，编译器禁止在任何其他地方调用构造器。
+class Flower{
+	int petalCount = 0;
+	String s = "initial value";
+	Flower(int petals){
+		petalCount = petals;
+		System.out.println("Constructor w/ int arg only, petalCount = "+petals);
+	}
+	Flower(String ss){
+		System.out.println("Constructor w/ String arg only,ss = "+ss);
+		s = ss;
+	}
+	Flower(String ss,int petals){
+		this(petals);
+		this.s = ss;
+	}
+	Flower(){
+		this("hi",47);
+	}
+	void printPetalCount(){
+		System.out.println("petalCount = "+petalCount+" s = "+s);
+	}
+}
+
+//对象可能不被垃圾回收
+//垃圾回收不等于析构
+//垃圾回收只和内存有关
+class Book{
+	boolean checkedOut = false;
+	Book(boolean checkOut){
+		checkedOut = checkOut;
+	}
+	void CheckIn(){
+		checkedOut = false;
+	}
+	protected void finalize(){
+		if(checkedOut)
+			System.out.println("Error: checked out ");
+		//super.finalize();
+	}
+}
+
+//数据成员初始化
+class InitialValues {
+	boolean t;
+	char c;
+	byte b;
+	short s;
+	int i;
+	long l;
+	float f;
+	double d;
+	InitialValues reference;//在类里定义一个引用时，如果不将其初始化，得到的值就为null
+	void printInitialValues(){
+		System.out.println("Data type       Initial value");
+		System.out.println("char            ["+c+"]");
+		System.out.println("byte           "+b);
+		System.out.println("short          "+s);
+		System.out.println("int            "+i);
+		System.out.println("long           "+l);
+		System.out.println("float          "+f);
+		System.out.println("double         "+d);
+		System.out.println("reference      "+reference);
+	}
+}
+
+class InitialValues2 {
+	boolean bool = true;
+	char ch = 'x';
+	byte b = 47;
+	short s = 0xff;
+	int i = 999;
+	long lng = 1;
+	float f = 3.14f;
+	double d = 3.14159;
 }
