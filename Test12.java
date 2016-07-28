@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 //:operator/Exponents.java
@@ -32,9 +33,55 @@ public class Test12 {
 //		novel.CheckIn();
 //		new Book(true);
 //		System.gc();
-		InitialValues iv = new InitialValues();
-		iv.printInitialValues();
+//		InitialValues iv = new InitialValues();
+//		iv.printInitialValues();
+//		System.out.println("Creating new Cupboard() in main");
+//		new Cupboard();
+//		System.out.println("Creating new Cupboard() in main");
+//		new Cupboard();
+//		table.f2(1);
+//		cupboard.f3(1);
+//		Cups cu = new Cups();
+//		cu.cup1.f(1);
+//		Mug mug1 = new Mug(1);
+//		System.out.println("Inside main()");
+//		new Mugs();
+//		System.out.println("new Mugs() completed");
+//		new Mugs(1);
+//		System.out.println("new Mugs(1) completed");
+//		
+//		ArraysOfPrimitives aop = new ArraysOfPrimitives();
+//		aop.AOP();
+		
+//		ArrayNew an =  new ArrayNew();
+//		an.AN();
+//	
+//		ArrayClassObj aco = new ArrayClassObj();
+//		aco.ACO();
+		
+//		ArrayInit ai  = new ArrayInit();
+//		ai.AI();
+//	
+//		Other.main(new String[]{"fiddle","de","dum"});
+		
+		
+//		VarArgs.main(args);
+		
+//		NewVarArgs.main(args);
+		
+//		OptionalTrailingArguments.main(args);
+		
+//		VarargType.main(args);
+		
+//		OverloadingVarargs.main(args);
+		
+//		SimpleEnumUse.main(args);
+		
+		EnumOrder.main(args);
+		
 	}
+//	static Table table = new Table();
+//	static Cupboard cupboard = new Cupboard();
 }
 
 class Ecase{
@@ -543,4 +590,331 @@ class InitialValues2 {
 	long lng = 1;
 	float f = 3.14f;
 	double d = 3.14159;
+}
+
+class Counter{
+	int i;
+	Counter(){
+		i = 7;
+	}
+}
+
+class Window {
+	Window(int marker){
+		System.out.println("Window("+marker+")");
+	}
+}
+
+
+//变量会在任何方法被调用之前得到初始化
+class House {
+	Window w1 = new Window(1);
+	House(){
+		System.out.println("House()");
+		w3 = new Window(33);
+	}
+	Window w2 = new Window(2);
+	void f() {
+		System.out.println("f()");
+	}
+	Window w3 = new Window(3);
+}
+
+class Bowl {
+	Bowl(int marker){
+		System.out.println("Bowl("+marker+")");
+	}
+	void f1(int marker){
+		System.out.println("f1("+marker+")");
+	}
+}
+
+class Table {
+	static Bowl bowl1 = new Bowl(1);
+	Table(){
+		System.out.println("Table()");
+		bowl2.f1(1);
+	}
+	void f2(int marker){
+		System.out.println("f2("+marker+")");
+	}
+	static Bowl bowl2  = new Bowl(2);
+}
+
+class Cupboard {
+	Bowl bowl3 = new Bowl(3);
+	static Bowl bowl4 = new Bowl(4);
+	Cupboard(){
+		System.out.println("Cupboard()");
+		bowl4.f1(2);
+	}
+	void f3(int marker){
+		System.out.println("f3("+marker+")");
+	}
+	static Bowl bowl5 = new Bowl(5);
+}
+
+class Spoon {
+	static int i;
+	static {
+		i = 47;
+	}
+}
+
+class Cup {
+	Cup(int marker){
+		System.out.println("Cup("+marker+")");
+	}
+	void f(int marker){
+		System.out.println("f("+marker+")");
+	}
+}
+
+class Cups {
+	static Cup cup1;
+	static Cup cup2;
+	static {
+		cup1 = new Cup(1);
+		cup2 = new Cup(2);
+	}
+	Cups(){
+		System.out.println("Cups()");
+	}
+}
+
+class Mug {
+	Mug(int marker){
+		System.out.println("Mug("+marker+")");
+	}
+	void f(int marker){
+		System.out.println("f("+marker+")");
+	}
+}
+
+class Mugs {
+	Mug mug1;
+	Mug mug2;
+	{
+		mug1 = new Mug(1);
+		mug2 = new Mug(2);
+		System.out.println("mug1 & mug2 initialized");
+	}
+	Mugs(){
+		System.out.println("Mugs()");
+	}
+	Mugs(int n){
+		System.out.println("Mugs(int)");
+	}
+}
+
+
+//数组 异名引用
+//字符串length()方法 数组length属性
+class ArraysOfPrimitives {
+	void AOP() {
+		int[] a1 = {1,2,3,4,5};
+		int[] a2;
+		a2 = a1;
+		for(int i = 0;i<a2.length;i++){
+			a2[i] = a2[i]+1;
+		}
+		for(int i = 0;i<a1.length;i++){
+			System.out.println("a1["+i+"]"+"="+a1[i]);
+		}
+	}
+}
+
+
+//a = new int[rand.nextInt(20)]
+//数组中的基本元素类型会自动初始化成空值
+class ArrayNew {
+	void AN() {
+		int[] a;
+		Random rand = new Random(47);
+		a = new int[rand.nextInt(20)];
+		System.out.println("length of a = "+a.length);
+		System.out.println(Arrays.toString(a));
+	}
+}
+
+
+//在类里定义一个引用时，如果不将其初始化，得到的值为null
+class ArrayClassObj {
+	void ACO() {
+		Random rand = new Random(47);
+		Integer[] a = new Integer[rand.nextInt(20)];
+		System.out.println("length of a = "+a.length);
+//		for(int i = 0; i<a.length;i++){
+//			a[i]=rand.nextInt(500);
+//		}
+		System.out.println(Arrays.toString(a));
+	}
+}
+
+class ArrayInit {
+	void AI(){
+		Integer[] a = {
+			new Integer(1),
+			new Integer(2),
+			3,
+		};
+		Integer[] b = {
+			new Integer(1),
+			new Integer(2),
+			3,
+		};
+		System.out.println(Arrays.toString(a));
+		System.out.println(Arrays.toString(b));
+	}
+}
+
+//可以创建一个String对象数组，将其传入另一个main方法中
+class Other {
+	public static void main(String[] args){
+		for(String s:args)
+			System.out.println(s+ " ");
+	}
+}
+
+class A {
+	
+}
+
+class VarArgs {
+	static void printArray(Object[] args){
+		for(Object obj : args)
+			System.out.print(obj+ " ");
+		System.out.println();
+	}
+	public static void main(String[] args){
+		printArray(new Object[]{
+				new Integer(47),new Float(3.14),new Double(11.11)
+		});
+		printArray(new Object[]{"one","two","three"});
+		printArray(new Object[]{new A(),new A(),new A()});
+	}
+}
+
+class NewVarArgs {
+	static void printArray(Object...Args){
+		for(Object obj : Args)
+			System.out.print(obj+" ");
+		System.out.println();
+	}
+	public static void main(String[] args){
+		printArray(new Integer(47),new Float(3.14),new Double(11.11));
+		printArray(47,3.14F,11.11);
+		printArray("one","two","three");
+		printArray(new A(),new A(),new A());
+		printArray((Object[])new Integer[]{1,2,3,4});
+		printArray();
+	}
+}
+
+class OptionalTrailingArguments {
+	static void f(int required,String...trailing){
+		System.out.print("required"+required+" ");
+		for(String s : trailing)
+			System.out.print(s+ " ");
+		System.out.println();
+	}
+	public static void main(String[] args){
+		f(1,"one");
+		f(2,"two","three");
+		f(0);
+	}
+}
+
+
+
+//getClass()属于Object的一部分，将产生对象的类  ????Character??
+class VarargType {
+	static void f(Character...args){
+		System.out.print(args.getClass());
+		System.out.println(" length "+ args.length);
+	}
+	static void g(int...args){
+		System.out.print(args.getClass());
+		System.out.println(" length "+args.length);
+	}
+	public static void main(String[] args){
+		f('a','b');
+		f();
+		g(1);
+		g();
+		System.out.println("int[]: "+new int[0].getClass());
+	}
+}
+
+class AutoBoxingVarargs {
+	public static void f(Integer...args){
+		for(Integer i : args)
+			System.out.print(i+" ");
+		System.out.println();
+	}
+	public static void main(String[] args){
+		f(new Integer(1),new Integer(2));
+		f(4,5,6,7,8,9);
+		f(10,new Integer(11),12);
+	}
+}
+
+class OverloadingVarargs {
+	static void f(Character...args){
+		System.out.print("first");
+		for(Character c : args)
+			System.out.print(" " +c);
+		System.out.println();
+	}
+	static void f(Integer...args){
+		System.out.print("second");
+		for(Integer i:args)
+			System.out.print(" "+i);
+		System.out.println();
+	}
+	static void f(Long...args){
+		System.out.print("third");
+		for(Long l:args)
+			System.out.print(" "+l);
+		System.out.println();
+	}
+	static void main(String[] args){
+		f('a','b','c');
+		f(1);
+		f(2,1);
+		f(0);
+		f(0L);
+	}
+}
+
+class OverloadingVarargs2 {
+	static void f(float i, Character...args){
+		System.out.println("first");
+	}
+	static void f(char c,Character...args){
+		System.out.println("second");
+	}
+	public static void main(String[] args){
+		f(1,'a');
+		f('a');
+	}
+}
+
+enum Spiciness {
+	NOT,MILD,MEDIUM,HOT,FLAMING
+}
+
+class SimpleEnumUse {
+	public static void main(String[] args){
+		Spiciness howHot = Spiciness.MEDIUM;
+		System.out.println(howHot);
+	}
+}
+
+class EnumOrder {
+	public static void main(String[] args){
+		for(Spiciness s : Spiciness.values())
+			System.out.println(s+", ordinal "+s.ordinal());
+		System.out.println(Spiciness.values());
+	}
 }
